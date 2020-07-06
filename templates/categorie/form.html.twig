@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategorieController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    h1{
+        padding-top: 1em;
+        text-align: center; 
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1 class="title is-2">Ajouter une catégorie</h1>
+
+    <section class="section has_background_white_ter">
+        {{ form_start(form)}}
+            {{form_row(form.titre)}}
+            {{form_row(form.motscles)}}
+            <button class=" button is-primary " type="submit" value="submit">Enregistrer</button>
+
+        {{ form_end(form)}}
+    </section>
+   
+</div>
+{% endblock %}

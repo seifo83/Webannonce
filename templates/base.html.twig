@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        {% block stylesheets %}
+            {#css#}
+            {{ encore_entry_link_tags("app") }}
+            {#js#}
+            {{ encore_entry_script_tags("app") }}
+        {% endblock %}
+        {% block nav %}
+            <nav class="navbar has-background-grey-darker is-dark">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="#">
+                        <p class="subtitle is-4 has-text-primary">
+                            <i class=""></i><b>WebAnnonce</b>
+                        </p>
+                    </a>
+                    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div id="navbarBasicExample" class="navbar-menu">
+                    <div class="navbar-start">
+                        <a class="navbar-item" href="{{ path("home") }}">
+                            Qui Sommes Nous
+                        </a>
+                        <a class="navbar-item" href="#">
+                            Contact
+                        </a>
+                        <a class="navbar-item" href="{{ path("commentaire_lister") }}">
+                            Commentaires
+                        </a>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link" href="{{ path("annonce_lister")}}">
+                                Annonces
+                            </a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="{{ path("annonce_lister")}}">
+                                    Lister
+                                </a>
+                                <a class="navbar-item" href="{{ path("annonce_ajouter")}}">
+                                    Ajouter
+                                </a>
+                                <hr class="navbar-divider">
+                                <a class="navbar-item">
+                                    Statistique
+                                </a>
+                            </div>
+                        </div>
+
+                        <a class="navbar-item" href="{{ path("note_lister") }}">
+                            Note
+                        </a>
+
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">
+                                Membres
+                            </a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="{{ path("membre_lister") }}">
+                                    lister Membre
+                                </a>
+                                <a class="navbar-item" href="{{ path("membre_aff") }}">
+                                    Ajouter Membre
+                                </a>
+                                <hr class="navbar-divider">
+                                <a class="navbar-item">
+                                    Statistique
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">
+                                Categories
+                            </a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="{{ path("categorie_lister") }}">
+                                    lister
+                                </a>
+                                <a class="navbar-item" href="{{ path("categorie_afficher") }}">
+                                    Ajouter
+                                </a>
+                                <hr class="navbar-divider">
+                                <a class="navbar-item">
+                                    Statistiques
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <a class="navbar-item">
+                            <form action="#">
+                                <div class="field has-addons">
+                                    <div class="control is-expanded">
+                                        <input name="query" type="text" class="input is-small" placeholder="Recherche ..." required>
+                                    </div>
+                                    <div class="control">
+                                        <button type="submit" class="button is-primary is-small">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                    </a>
+                    <div class="navbar-end">
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a class="button is-primary is-small" href="{{ path("inscription") }}">
+                                    <strong>Inscription</strong>
+                                </a>
+                                <a class="button is-light is-small" href="{{ path("app_login") }}">
+                                    Connexion
+                                </a>
+                                <a class="button is-light is-small" href="{{ path("app_logout") }}">
+                                    Déconnexion
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+    {% endblock %}
+    </head>
+    <body>
+        <div class="container is-fluid">
+            <div class="alert">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success" role="alert">
+                    <a href="#" class="alert-link"></a>
+                    <h4 class="alert-heading">c'est fait !</h4>
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

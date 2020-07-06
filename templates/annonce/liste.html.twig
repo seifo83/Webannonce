@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}lister Les Annonces{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; color: black; text-align: center; font: 24px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px;  }
+
+            #select{
+                margin-left: 1em ;
+            }
+       
+            #customers {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            background-position: center;
+            border-collapse: collapse;
+            width: 90%;
+            margin-left: 1em ;
+            }
+           
+
+            #customers td, #customers th {
+            border: 1px solid #ddd;
+            text-align: center;
+            
+            }
+
+            #customers tr:nth-child(even){background-color: #E5E4E7;}
+            #customers tr:hover {background-color: #D2D1D3 ;}
+
+            #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            background-color:#31469B;
+            color: white;
+            
+
+            
+            }
+
+    </style>
+
+    <div class="example-wrapper">
+        <h1 class="title is-2">Gestion des annonces</h1> 
+    </div>
+   
+    <div id="select" class="control">
+        <div class="select">
+            <form methode="GET">
+                <select>
+                    <option>Trier par catégorie</option>
+                    <option> 
+                        {%for cat in listcat %}
+                                <option value='{{ cat.id }}'> {{ cat.titre}} </option>
+                        {% endfor %}
+                    </option>
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <br>
+    <div>
+        <table id="customers" > 
+            <tr>
+                <div class="columns is-gapless">
+                    <th>
+                        <div class="column">
+                            id annonce
+                        </div>
+                    </th>
+                    <th>
+                        <div class="column">
+                            titre
+                        </div>
+                    </th>
+                    <th>
+                        <div class="column">
+                            description courte
+                        </div>
+                    </th>
+                     <th>
+                        <div  class="column">
+                            description longue
+                        </div>
+                    </th>
+                     <th>
+                        <div class="column">
+                            prix
+                        </div>
+                    </th>
+                     <th>
+                        <div class="column">
+                            photo
+                        </div>
+                    </th>
+                     <th>
+                        <div class="column">
+                            pays
+                        </div>
+                    </th>
+                     <th>
+                        <div class="column">
+                            ville
+                        </div>
+                    </th>
+                     <th>
+                        <div class="column">
+                            adresse
+                        </div>
+                    </th>
+                     <th>
+                        <div class="column">
+                            cp
+                        </div>
+                    </th>
+                     <th>
+                        <div class="column">
+                            membre
+                        </div>
+                    </th>
+                     <th>
+                        <div class="column">
+                            categorie
+                        </div>
+                    </th>
+                      <th>
+                        <div class="column">
+                            date enregistrement
+                        </div>
+                    </th>
+                    <th colspan="3">
+                        <div class="column">
+                            actions
+                        </div>
+                    </th>
+                </div>
+            </tr>
+
+            {% for liste in listes %}
+            <div>
+                <tr>
+                    <td>{{liste.id}}</td>
+                    <td>{{liste.titre}}</td>
+                    <td>{{liste.descriptioncourte}}</td> 
+                    <td>{{liste.descriptionlongue}}</td> 
+                    <td>{{liste.prix}}</td>
+                    <td><img src="{{asset('images/'~liste.photoid.photo1) }}" alt="img" /></td>
+                    <td>{{liste.pays}}</td>
+                    <td>{{liste.ville}}</td>
+                    <td>{{liste.adresse}}</td>
+                    <td>{{liste.cp}}</td>
+                    <td>{{liste.membreid.prenom}}</td>
+                    <td>{{liste.categorieid.titre}}</td>   
+                    <td>{{liste.dateenregistrement|date("m/d/Y H:i:s")}}</td> 
+                    <td><a href="#"><i class="fas fa-search"></i></a></td>
+                    <td><a href="#"><i class='fa fa-pen'></i></a></td>
+                    <td><a href="#"><i class='fa fa-trash'></i></a></td>
+                </tr>
+            </div>
+            {% endfor %}
+        </table>
+    </div>
+   
+
+{% endblock %}
+
+

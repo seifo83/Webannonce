@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+
+    <div class="example-wrapper">
+        <h1 class="title is-2">Inscrivez-Vous</h1>
+    
+        <section class="section has_background_white_ter">
+            {{ form_start(form)}}
+                {{ form_row(form.pseudo) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.plainPassword) }}
+                {{ form_row(form.nom) }}
+                {{ form_row(form.prenom) }}
+                {{ form_row(form.telephone) }}
+                {{ form_row(form.civilite) }}
+                {{ form_row(form.agreeTerms) }}
+                <button class=" button is-primary " type="submit" value="submit">Enregistrer</button>
+    
+            {{ form_end(form)}}
+        </section>
+       
+    </div>
+{% endblock %}
